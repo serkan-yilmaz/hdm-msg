@@ -1,19 +1,20 @@
 package de.hdm.gruppe2.shared.bo;
 
+import java.util.ArrayList;
+
 public class Message extends BusinessObject {
 	
 	
-	private static long serialVersionUID = 1L;
+	private final static long serialVersionUID = 1L;
 	
 	private String text; 
 	
-	private User user; 
+	private User sender; 
 	
-	// HashtagListe fehlt!
+	private ArrayList<Hashtag> hashtagList;
 	
-	//private Sender sender;
 	
-	//private Reciever reciever;
+	private ArrayList<User> receiver;   
 	
 	public String getText() {
 		return text;
@@ -23,21 +24,27 @@ public class Message extends BusinessObject {
 		this.text = text; 
 	}
 	public User getUser() {
-		return user;
+		return sender;
 	}
 
-	public void setUser (User user) {
-		this.user = user; 
+	public void setUser (User sender) {
+		this.sender = sender; 
 	}
 
-	/*public String getReciever() {
-		return reciever;
+	public ArrayList<User> getReceiver() {
+		return this.receiver;
 	}
 	
-	get und set Hashtag fehlt!
 	
-	public void setReciver (reciver Reciver) {
-		this.reciver = reciver; 
-	}*/
-
+	
+	public void setReciver (ArrayList<User> receiver) {
+		this.receiver = receiver; 
+	}
+	
+	public ArrayList<Hashtag> getHashtagList() {
+		return hashtagList; 
+	}
+	public void setHashtagList (ArrayList<Hashtag> hashtagList) {
+		this.hashtagList = hashtagList; 
+	}
 }
