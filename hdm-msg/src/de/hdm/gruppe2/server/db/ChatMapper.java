@@ -104,12 +104,32 @@ public class ChatMapper {
 					 	    }
 					 	  }
 	
-	public Vector <Chat> getALLUser(){
-		return null;
-	}
+	public Chat findByID (String id){
+		 			
+		Connection con = DBConnection.connection();
+		Chat chat = null;
+		 			
+		 			try{
+		 				Statement stmt = con.createStatement();
+		 			    
+		 			    ResultSet rs = stmt.executeQuery("SELECT * FROM Chat WHERE chatID ='"+id+"';");
+		 			  
+		 			    if(rs.next()){
+		 			    	chat = new Chat();
+		 			    	chat.setId(rs.getInt("chatID"));
+		 			    	   	
+		 			    	
+		 			        java.sql.Timestamp sqlDate = rs.getTimestamp("creationDate");
+		 		     	 	chat.setCreationDate(sqlDate);
+		 			    }
+		 			}
+		 			catch(SQLException e){
+		 				e.printStackTrace();
+		 			}
+		 			return chat;
+		 		}
+		 	  
 	
-	public Vector <Chat> getAllMessage(){
-		return null;
-	}
+		 }
 	
-}
+
