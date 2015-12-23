@@ -112,7 +112,7 @@ public class ChatMapper {
 		 			try{
 		 				Statement stmt = con.createStatement();
 		 			    
-		 			    ResultSet rs = stmt.executeQuery("SELECT * FROM Chat WHERE chatID ='"+id+"';");
+		 			    ResultSet rs = stmt.executeQuery("SELECT * FROM Chat WHERE chatID ='"+id+"' ORDER BY ID;");;
 		 			  
 		 			    if(rs.next()){
 		 			    	chat = new Chat();
@@ -128,7 +128,32 @@ public class ChatMapper {
 		 			}
 		 			return chat;
 		 		}
-		 	  
+	public Chat findByUserAndTime(String id){
+		
+		Connection con = DBConnection.connection();
+		Chat chat = null;
+		 			
+		 			try{
+		 				Statement stmt = con.createStatement();
+		 			    
+		 		
+		 			    String date = null;
+						ResultSet rs = stmt.executeQuery("SELECT * FROM Chat WHERE userID ='"+id+"' AND Where date = '"+date+"' ;");
+		 			  
+		 			    if(rs.next()){
+		 			    	chat = new Chat();
+		 			    	chat.setId(rs.getInt("chatID"));
+		 			    	//chat.setDate(rs.getDate("dd/MM/YYYY HH:mm:ss"));   	
+		 			    	
+		 			        java.sql.Timestamp sqlDate = rs.getTimestamp("creationDate");
+		 		     	 	chat.setCreationDate(sqlDate);
+		 			    }
+		 			}
+		 			catch(SQLException e){
+		 				e.printStackTrace();
+		 			}
+		 			return chat;
+		 		}	 	  
 	
 		 }
 	
