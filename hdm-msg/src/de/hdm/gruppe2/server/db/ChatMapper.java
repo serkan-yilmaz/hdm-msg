@@ -37,7 +37,7 @@ public class ChatMapper {
 		return chatMapper;
 	}
 	
-	  public Chat insertChat(Chat chat) {
+	 public Chat insertChat(Chat chat) {
 		  		  Connection con = DBConnection.connection();
 		  		  
 		  		  try {
@@ -73,7 +73,7 @@ public class ChatMapper {
 		  	  }
 		  	 
 	  
-				public Chat updateChat(Chat chat) {
+	public Chat updateChat(Chat chat) {
 				 	    Connection con = DBConnection.connection();
 				 	    
 				 	    Integer chatId = new Integer(chat.getId());
@@ -91,9 +91,18 @@ public class ChatMapper {
 				 	    return chat;
 				 	  }
 	
-	public Chat delete (Chat chat){
-		return null;
-	}
+	public void deleteChat(Chat chat) {
+					     Connection con = DBConnection.connection();
+					 
+					 	    try {
+					 	      Statement stmt = con.createStatement();
+					 	      stmt.executeUpdate("DELETE FROM Chat WHERE chatID ='"+ chat.getId()+"'");
+					 	    }
+					 	    
+					 	    catch (SQLException e2) {
+					 	      e2.printStackTrace();
+					 	    }
+					 	  }
 	
 	public Vector <Chat> getALLUser(){
 		return null;
